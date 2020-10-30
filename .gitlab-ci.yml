@@ -23,7 +23,7 @@ test:
   stage: test
   image: docker:18.09.7
   script:
-    - setup_docker
+    #- setup_docker
     - docker run -t $TEST_IMAGE
 
 release:
