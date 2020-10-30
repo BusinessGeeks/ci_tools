@@ -18,10 +18,11 @@ build:
 
 test:
   stage: test
-  image: buildah/buildah
+  services:
+    - docker:18.09.7-dind
   script:
     #- setup_docker
-    - podman run -t $TEST_IMAGE /bin/sh init.sh
+    - docker run -t $TEST_IMAGE /bin/sh init.sh
 
 release:
   stage: release
