@@ -12,7 +12,7 @@ before_script:
 
 build:
   stage: build
-  image: buildah:latest
+  image: buildah/buildah
   script:
     - docker build --pull -t $TEST_IMAGE .
     - docker push $TEST_IMAGE
