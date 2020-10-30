@@ -17,9 +17,10 @@ build:
 
 test:
   stage: test
-  image: $TEST_IMAGE
+  image: docker:latest
   script:
     - setup_docker
+    - docker run -t $TEST_IMAGE
 
 release:
   stage: release
