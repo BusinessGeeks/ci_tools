@@ -4,4 +4,4 @@ RUN mkdir /app
 WORKDIR /app
 COPY . /app/
 
-ENTRYPOINT [ "init.sh" ]
+CMD [ "init.sh" ]
