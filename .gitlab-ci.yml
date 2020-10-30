@@ -19,12 +19,9 @@ build:
 test:
   stage: test
   image: docker:18.09.7
-  services:
-      - docker:18.09.7-dind
-
   script:
     #- setup_docker
-    - docker run -t $TEST_IMAGE
+    - docker run -t $TEST_IMAGE /bin/sh init.sh
 
 release:
   stage: release
