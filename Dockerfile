@@ -1,3 +1,3 @@
 FROM alpine
 
-ENTRYPOINT [ "init.sh" ]
+ENTRYPOINT [ "./init.sh" ]
