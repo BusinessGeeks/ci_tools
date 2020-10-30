@@ -12,6 +12,7 @@ build:
   stage: build
   image: buildah/buildah
   script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker build --pull -t $TEST_IMAGE .
     - docker push $TEST_IMAGE
 
@@ -47,5 +48,4 @@ release:
 
 before_script:
   - *functions
-  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
 
