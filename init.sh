@@ -17,4 +17,4 @@ function setup_docker() {
   fi
 }
 
-echo $1
+echo "This is working" $1
