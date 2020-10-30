@@ -1,3 +1,7 @@
 FROM alpine
 
-ENTRYPOINT [ "./init.sh" ]
+RUN mkdir /app
+WORKDIR /app
+COPY . /app/
+
+ENTRYPOINT [ "init.sh" ]
