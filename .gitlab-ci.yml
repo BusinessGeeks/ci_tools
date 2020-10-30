@@ -47,7 +47,6 @@ release:
         fi
       fi
     }
-  }
 
 before_script:
   - *functions
