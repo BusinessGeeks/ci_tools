@@ -4,12 +4,10 @@ stages:
 - release
 
 variables:
-  TEST_IMAGE: $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_REF_NAME
-  RELEASE_IMAGE: $CI_REGISTRY/$CI_PROJECT_PATH:latest
+  TEST_IMAGE: $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_REF_NAME       # Working Image during the Pipeline
+  RELEASE_IMAGE: $CI_REGISTRY/$CI_PROJECT_PATH:latest                 # Final Image for Release 
 
-before_script:
-  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-
+# Use Buildah as container builder to avoid using docker:dind
 build:
   stage: build
   image: buildah/buildah
@@ -24,6 +22,7 @@ test:
   stage: test
   image: docker:latest
   script:
+    - setup_docker
     - docker run -t $TEST_IMAGE "This is working"
 
 release:
@@ -40,4 +39,17 @@ release:
     name: $CI_COMMIT_REF_NAME
     url: https://localhost/
 
+.functions: &functions |
+  function setup_docker() {
+      if ! docker info &>/dev/null; then
+        if [ -z "$DOCKER_HOST" -a "$KUBERNETES_PORT" ]; then
+          export DOCKER_HOST='tcp://localhost:2375'
+        fi
+      fi
+    }
+  }
+
+before_script:
+  - *functions
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
 
