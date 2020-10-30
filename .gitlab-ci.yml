@@ -17,6 +17,9 @@ build:
     - docker push $TEST_IMAGE
 
 test:
+  variables:
+    DOCKER_DRIVER: overlay
+    DOCKER_HOST: tcp://localhost:2375
   stage: test
   image: docker:18.09.7
   script:
