@@ -17,8 +17,8 @@ build:
 
 test:
   variables:
-    DOCKER_HOST: tcp://docker:2376
-    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_DRIVER: overlay
+    DOCKER_HOST: tcp://localhost:2375
   stage: test
   image: docker:latest
   script:
