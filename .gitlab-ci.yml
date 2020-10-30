@@ -18,6 +18,9 @@ build:
     - docker push $TEST_IMAGE
 
 test:
+  variables:
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: "/certs"
   stage: test
   image: docker:latest
   script:
