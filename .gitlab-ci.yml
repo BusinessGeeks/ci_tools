@@ -18,7 +18,7 @@ build:
 
 test:
   stage: test
-  image: alpine
+  image: docker:18.09.7
   services:
     - docker:18.09.7-dind
   script:
