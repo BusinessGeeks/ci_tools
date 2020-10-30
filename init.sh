@@ -6,3 +6,5 @@ function env_check() {
       [[ "$PROJECT_NAME" ]] || { echo -e "\e[31mPROJECT_NAME does not exist. Please set it.\e[0m"; exit 1; }
       [[ "$DOMAIN_NAME" ]] || { echo -e "\e[31mDOMAIN_NAME does not exist. Please set it.\e[0m"; exit 1; }
 }
+
+echo $1

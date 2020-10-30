@@ -19,8 +19,9 @@ build:
 
 test:
   stage: test
+  image: docker:latest
   script:
-    - echo "Testing the test"
+    - docker run -t $TEST_IMAGE "This is working"
 
 release:
   stage: release
