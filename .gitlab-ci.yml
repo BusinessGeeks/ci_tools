@@ -4,11 +4,11 @@ stages:
 - release
 
 variables:
-  TEST_IMAGE: registry.ubx.ph/$CI_PROJECT_PATH:$CI_COMMIT_REF_NAME
-  RELEASE_IMAGE: registry.ubx.ph/$CI_PROJECT_PATH:latest
+  TEST_IMAGE: $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_REF_NAME
+  RELEASE_IMAGE: $CI_REGISTRY/$CI_PROJECT_PATH:latest
 
-#before_script:
-#  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.ubx.ph
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
 
 build:
   stage: build
