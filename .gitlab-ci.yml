@@ -20,9 +20,10 @@ test:
   stage: test
   #image: marshallford/podman
   #image: docker:18.09.7
-  image: docker:dind
-  #services:
+  #image: docker:dind
+  services:
   #  - docker:18.09.7-dind
+     - docker:dind
   script:
     - setup_docker
     - docker run -t $TEST_IMAGE
