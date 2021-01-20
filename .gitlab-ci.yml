@@ -50,6 +50,6 @@ release:
       fi
     }
 
-before_script:
-  - *functions
+#before_script:
+#  - *functions
 
