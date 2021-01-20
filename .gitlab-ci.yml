@@ -18,13 +18,14 @@ build:
 
 test:
   stage: test
-  image: marshallford/podman
+  #image: marshallford/podman
   #image: docker:18.09.7
+  image: docker:dind
   #services:
   #  - docker:18.09.7-dind
   script:
-    #- setup_docker
-    - podman run -t $TEST_IMAGE
+    - setup_docker
+    - docker run -t $TEST_IMAGE
 
 release:
   stage: release
