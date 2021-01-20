@@ -20,7 +20,7 @@ test:
   stage: test
   #image: marshallford/podman
   #image: docker:18.09.7
-  #image: docker:dind
+  image: docker:dind
   services:
   #  - docker:18.09.7-dind
      - docker:dind
