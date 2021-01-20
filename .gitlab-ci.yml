@@ -18,11 +18,8 @@ build:
 
 test:
   stage: test
-  #image: marshallford/podman
-  #image: docker:18.09.7
   image: docker:dind
   services:
-  #  - docker:18.09.7-dind
      - docker:dind
   script:
     - setup_docker
@@ -30,10 +27,11 @@ test:
 
 release:
   stage: release
+  image: buildah/buildah
   script:
-    - docker pull $TEST_IMAGE
-    - docker tag $TEST_IMAGE $RELEASE_IMAGE
-    - docker push $RELEASE_IMAGE
+    - podman pull $TEST_IMAGE
+    - podman tag $TEST_IMAGE $RELEASE_IMAGE
+    - podman push $RELEASE_IMAGE
   rules:
     - if: $CI_MERGE_REQUEST_IID
       when: never
