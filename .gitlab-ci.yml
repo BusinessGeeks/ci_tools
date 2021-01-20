@@ -24,7 +24,7 @@ test:
   #services:
   #  - docker:18.09.7-dind
   script:
-    #- setup_docker
+    - setup_docker
     - docker run -t $TEST_IMAGE
 
 release:
@@ -41,15 +41,15 @@ release:
     name: $CI_COMMIT_REF_NAME
     url: https://localhost/
 
-#.functions: &functions |
-#  function setup_docker() {
-#      if ! docker info &>/dev/null; then
-#        if [ -z "$DOCKER_HOST" -a "$KUBERNETES_PORT" ]; then
-#          export DOCKER_HOST='tcp://localhost:2375'
-#        fi
-#      fi
-#    }
+.functions: &functions |
+  function setup_docker() {
+      if ! docker info &>/dev/null; then
+        if [ -z "$DOCKER_HOST" -a "$KUBERNETES_PORT" ]; then
+          export DOCKER_HOST='tcp://localhost:2375'
+        fi
+      fi
+    }
 
-#before_script:
-#  - *functions
+before_script:
+  - *functions
 
