@@ -10,7 +10,7 @@ variables:
 # Use Buildah as container builder to avoid using docker:dind
 build:
   stage: build
-  image: marshallford/podman
+  image: buildah/buildah
   script:
     - podman login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - podman build --pull -t $TEST_IMAGE .
